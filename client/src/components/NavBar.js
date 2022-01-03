@@ -158,14 +158,14 @@ const NavBar = () => {
                   ToViewList
                 </Typography>
                 <Typography variant="caption" className={classes.madeBy}>
-                  Made with <FavoriteIcon style={{ fontSize: 11 }} /> by{' '}
+                         {' '}
                   <Link
                     href={'https://github.com/amand33p'}
                     color="inherit"
                     target="_blank"
                     rel="noopener"
                   >
-                    amand33p
+                    
                   </Link>
                 </Typography>
               </div>

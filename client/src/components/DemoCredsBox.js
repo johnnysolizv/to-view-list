@@ -8,10 +8,7 @@ const DemoCredsBox = () => {
 
   return (
     <div className={classes.root}>
-      <Alert severity="info">
-        <AlertTitle>Demo Account Credentials</AlertTitle>
-        {demoCreds}
-      </Alert>
+ 
     </div>
   );
 };
