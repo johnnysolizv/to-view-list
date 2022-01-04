@@ -64,8 +64,8 @@ const Card = ({ entry }) => {
       await entryService.star(id);
       notify(
         dispatch,
-        `${isStarred ? 'Un-Starred' : 'Starred'} "${title}"!`,
-        'success'
+        `${isStarred ? 'Sin Destacar' : 'Destacado'} "${title}"!`,
+        'exitoso'
       );
     } catch (err) {
       if (err?.response?.data?.error) {
@@ -82,8 +82,8 @@ const Card = ({ entry }) => {
       await entryService.view(id);
       notify(
         dispatch,
-        `Marked "${title}" as ${isViewed ? 'Not Viewed' : 'Viewed'}!`,
-        'success'
+        `Marcado "${title}" como ${isViewed ? 'No Visto' : 'Visto'}!`,
+        'exitoso'
       );
     } catch (err) {
       if (err?.response?.data?.error) {
@@ -107,7 +107,7 @@ const Card = ({ entry }) => {
     try {
       dispatch(removeEntry(id));
       await entryService.remove(id);
-      notify(dispatch, `Successfully deleted "${title}"!`, 'success');
+      notify(dispatch, `Eliminado exitosamente "${title}"!`, 'exitoso');
     } catch (err) {
       if (err?.response?.data?.error) {
         notify(dispatch, `${err.response.data.error}`, 'error');
@@ -142,7 +142,7 @@ const Card = ({ entry }) => {
                 startIcon={<EditIcon />}
                 className={classes.edit}
               >
-                Edit
+                Editar
               </Button>
               <DeleteDialog
                 handleDelete={handleDelete}
@@ -171,7 +171,7 @@ const Card = ({ entry }) => {
                 className={classes.star}
               />
             }
-            label={isMobile ? '' : isStarred ? 'Starred!' : 'Star it'}
+            label={isMobile ? '' : isStarred ? 'Destacado!' : 'Destacar'}
             onChange={handleStarToggle}
             className={classes.starButton}
           />
@@ -184,7 +184,7 @@ const Card = ({ entry }) => {
                 className={classes.view}
               />
             }
-            label={isMobile ? '' : isViewed ? 'Viewed!' : 'Mark as viewed'}
+            label={isMobile ? '' : isViewed ? 'Visto!' : 'Marcar como Visto'}
             onChange={handleViewToggle}
             className={classes.viewButton}
           />
@@ -210,7 +210,7 @@ const Card = ({ entry }) => {
         </Typography>
         {tags.length !== 0 && (
           <div className={classes.tagsGroup}>
-            Tags:{' '}
+            Etiqueta:{' '}
             {tags.map((tag) => (
               <Chip
                 key={tag}
@@ -225,7 +225,7 @@ const Card = ({ entry }) => {
         <Typography variant="body2" className={classes.addedTime}>
           <Tooltip title={createdAt}>
             <span>
-              Added:{' '}
+              Agregado:{' '}
               <TimeAgo datetime={createdAt} className={classes.timestamp} />
             </span>
           </Tooltip>
@@ -233,7 +233,7 @@ const Card = ({ entry }) => {
             <Tooltip title={updatedAt}>
               <span>
                 {' '}
-                | Last modified:{' '}
+                | Última modificación:{' '}
                 <TimeAgo
                   datetime={updatedAt}
                   className={classes.timestamp}

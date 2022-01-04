@@ -26,7 +26,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 const NavBar = () => {
@@ -70,9 +69,9 @@ const NavBar = () => {
     return user ? (
       <div>
         <MenuItem onClick={() => handleClose()}>
-          Hi, {user && user.displayName}
+          Bienvenido: {user && user.displayName}
         </MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>{' '}
+        <MenuItem onClick={handleLogout}>Salir</MenuItem>{' '}
       </div>
     ) : (
       <div>
@@ -81,14 +80,14 @@ const NavBar = () => {
           to="/register"
           onClick={() => handleClose()}
         >
-          Register
+          Registrarse
         </MenuItem>
         <MenuItem
           component={RouterLink}
           to="/login"
           onClick={() => handleClose()}
         >
-          Login
+          Entrar
         </MenuItem>{' '}
       </div>
     );
@@ -98,7 +97,7 @@ const NavBar = () => {
     return user ? (
       <>
         <Typography variant="body1" className={classes.user}>
-          Hi, {user && user.displayName}
+          Bienvenido: {user && user.displayName}
         </Typography>
         <Button
           color="inherit"
@@ -106,7 +105,7 @@ const NavBar = () => {
           onClick={handleLogout}
           className={classes.navButtons}
         >
-          Logout
+          Salir
         </Button>{' '}
       </>
     ) : (
@@ -117,7 +116,7 @@ const NavBar = () => {
           color="inherit"
           className={classes.navButtons}
         >
-          Register
+          Registrarse
         </Button>
         <Button
           component={RouterLink}
@@ -125,7 +124,7 @@ const NavBar = () => {
           color="inherit"
           className={classes.navButtons}
         >
-          Login
+          Entrar
         </Button>
       </>
     );
@@ -155,7 +154,7 @@ const NavBar = () => {
               <div className={classes.logoWrapper}>
                 <Typography variant="h6" className={classes.logo}>
                   <ListAltRoundedIcon className={classes.logoIcon} />
-                  ToViewList
+                  ListaDeQuehaceres
                 </Typography>
                 <Typography variant="caption" className={classes.madeBy}>
                          {' '}
@@ -176,7 +175,7 @@ const NavBar = () => {
                 color="inherit"
                 startIcon={<ArrowBackIcon />}
               >
-                Back
+                Atrás
               </Button>
             )}
           </div>
@@ -201,7 +200,7 @@ const NavBar = () => {
               >
                 {mobileMenu()}
                 <MenuItem>
-                  Dark mode:
+                  Modo Oscuro:
                   {darkModeSwitch()}
                 </MenuItem>
               </Menu>

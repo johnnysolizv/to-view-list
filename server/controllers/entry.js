@@ -8,18 +8,18 @@ const getEntries = async (req, res) => {
 };
 
 const addNewEntry = async (req, res) => {
-  const { title, link, description, type, tags } = req.body;
+const { title, link, description, type, tags} = req.body;
 
   if (!link || !validator.isURL(link)) {
     return res
       .status(401)
-      .send({ error: 'Valid URL is required for link field.' });
+      .send({ error: 'Se requiere una URL válida para el campo link' });
   }
 
   const user = await User.findById(req.user);
 
   if (!user) {
-    return res.status(404).send({ error: 'User does not exist in database.' });
+    return res.status(404).send({ error: 'Usuario no existe en la base de datos' });
   }
 
   const entry = new Entry({
@@ -42,17 +42,17 @@ const deleteEntry = async (req, res) => {
   const entry = await Entry.findById(entryId);
 
   if (!user) {
-    return res.status(404).send({ error: 'User does not exist in database.' });
+    return res.status(404).send({ error: 'Usuario no existe en la base de datos' });
   }
 
   if (!entry) {
     return res
       .status(404)
-      .send({ error: `Entry with ID: ${entryId} does not exist in database.` });
+      .send({ error: `Tarea con ID: ${entryId} no existe en la base de datos` });
   }
 
   if (entry.user.toString() !== user._id.toString()) {
-    return res.status(401).send({ error: 'Access is denied.' });
+    return res.status(401).send({ error: 'Acceso denegado' });
   }
 
   await Entry.findByIdAndDelete(entryId);
@@ -61,33 +61,33 @@ const deleteEntry = async (req, res) => {
 
 const updateEntry = async (req, res) => {
   const { id: entryId } = req.params;
-  const { title, link, description, type, tags } = req.body;
+  const { title, link, description, type, tags} = req.body;
 
   if (!title || !link || !description || !type || !tags) {
-    return res.status(400).send({ error: 'Not all fields have been entered.' });
+    return res.status(400).send({ error: 'No han sido completados todos los campos.' });
   }
 
   if (!link || !validator.isURL(link)) {
     return res
       .status(401)
-      .send({ error: 'Valid URL is required for link field.' });
+      .send({ error: 'Se requiere una URL válida para el campo link' });
   }
 
   const user = await User.findById(req.user);
   const entry = await Entry.findById(entryId);
 
   if (!user) {
-    return res.status(404).send({ error: 'User does not exist in database.' });
+    return res.status(404).send({ error: 'Usuario no existe en la base de datos' });
   }
 
   if (!entry) {
     return res
       .status(404)
-      .send({ error: `Entry with ID: ${entryId} does not exist in database.` });
+      .send({ error: `Tarea con ID: ${entryId} no existe en la base de datos` });
   }
 
   if (entry.user.toString() !== user._id.toString()) {
-    return res.status(401).send({ error: 'Access is denied.' });
+    return res.status(401).send({ error: 'Acceso denegado' });
   }
 
   const updatedEntryObj = {
@@ -113,7 +113,7 @@ const starEntry = async (req, res) => {
   if (!entry) {
     return res
       .status(404)
-      .send({ error: `Entry with ID: ${entryId} does not exist in database.` });
+      .send({ error: `Tarea con ID: ${entryId} no existe en la base de datos` });
   }
 
   entry.isStarred = !entry.isStarred;
@@ -130,7 +130,7 @@ const markEntryAsViewed = async (req, res) => {
   if (!entry) {
     return res
       .status(404)
-      .send({ error: `Entry with ID: ${entryId} does not exist in database.` });
+      .send({ error: `Tarea con ID: ${entryId} no existe en la base de datos` });
   }
 
   entry.isViewed = !entry.isViewed;

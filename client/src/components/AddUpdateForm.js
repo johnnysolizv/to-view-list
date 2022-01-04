@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import AlertBox from './AlertBox';
-import entryService from '../services/entries';
-import { useEntryContext } from '../context/entry/entryState';
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import AlertBox from "./AlertBox";
+import entryService from "../services/entries";
+import { useEntryContext } from "../context/entry/entryState";
 import {
   addEntry,
   updateEntry,
   resetEditValues,
   toggleIsLoading,
-} from '../context/entry/entryReducer';
-import notify from '../utils/notifyDispatcher';
+} from "../context/entry/entryReducer";
+import notify from "../utils/notifyDispatcher";
 
 import {
   FormControlLabel,
@@ -22,34 +22,34 @@ import {
   Typography,
   useMediaQuery,
   Paper,
-} from '@material-ui/core/';
-import { useFormStyles } from '../styles/muiStyles';
-import { useTheme } from '@material-ui/core/styles';
-import TitleIcon from '@material-ui/icons/Title';
-import LinkIcon from '@material-ui/icons/Link';
-import DescriptionIcon from '@material-ui/icons/Description';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import PostAddIcon from '@material-ui/icons/PostAdd';
-import EditIcon from '@material-ui/icons/Edit';
-import BackspaceIcon from '@material-ui/icons/Backspace';
+} from "@material-ui/core/";
+import { useFormStyles } from "../styles/muiStyles";
+import { useTheme } from "@material-ui/core/styles";
+import TitleIcon from "@material-ui/icons/Title";
+import DescriptionIcon from "@material-ui/icons/Description";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import PostAddIcon from "@material-ui/icons/PostAdd";
+import EditIcon from "@material-ui/icons/Edit";
+import BackspaceIcon from "@material-ui/icons/Backspace";
+import DateIcon from "@material-ui/icons/DateRange";
 
 const initialInputValues = {
-  title: '',
-  link: '',
-  description: '',
-  type: 'article',
+  title: "",
+  link: "",
+  description: "",
+  type: "article",
   tags: [],
 };
 
 const AddUpdateForm = () => {
   const [entry, setEntry] = useState(initialInputValues);
-  const [tagInput, setTagInput] = useState('');
-  const [error, setError] = useState('');
+  const [tagInput, setTagInput] = useState("");
+  const [error, setError] = useState("");
   const [{ editValues, isLoading }, dispatch] = useEntryContext();
   const history = useHistory();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('xs'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("xs"));
   const classes = useFormStyles();
 
   useEffect(() => {
@@ -68,12 +68,12 @@ const AddUpdateForm = () => {
   };
 
   const handleTagButton = () => {
-    if (tagInput === '') return;
+    if (tagInput === "") return;
     if (tags.includes(tagInput)) {
-      return setError(`Tags need to be unique. Two tags can't be same.`);
+      return setError("Las Etiquetas son únicas no pueden ser iguales");
     }
     setEntry({ ...entry, tags: tags.concat(tagInput.toLowerCase()) });
-    setTagInput('');
+    setTagInput("");
   };
 
   const handleTagDelete = (targetTag) => {
@@ -85,13 +85,13 @@ const AddUpdateForm = () => {
       dispatch(resetEditValues());
     }
     setEntry(initialInputValues);
-    setTagInput('');
+    setTagInput("");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (tags.length === 0) {
-      return setError('Atleast one tag is required.');
+      return setError("Al menos una Etiqueta es requerida");
     }
 
     try {
@@ -101,8 +101,8 @@ const AddUpdateForm = () => {
         dispatch(updateEntry(entryRes));
         notify(
           dispatch,
-          `Entry "${editValues.title}" has been successfully updated.`,
-          'success'
+          `Tarea "${editValues.title}" ha sido actualizada!`,
+          "éxito"
         );
         dispatch(resetEditValues());
       } else {
@@ -110,30 +110,30 @@ const AddUpdateForm = () => {
         dispatch(addEntry(entryRes));
         notify(
           dispatch,
-          `New entry "${entryRes.title}" has been successfully added!`,
-          'success'
+          `Tarea "${entryRes.title}" ha sido agregada!`,
+          "éxito"
         );
       }
 
       dispatch(toggleIsLoading());
       setEntry(initialInputValues);
-      setTagInput('');
-      history.push('/');
+      setTagInput("");
+      history.push("/");
     } catch (err) {
       dispatch(toggleIsLoading());
 
       const errRes = err?.response?.data;
 
       if (
-        errRes?.error.includes('title') &&
-        errRes?.error.includes('allowed length (40)')
+        errRes?.error.includes("title") &&
+        errRes?.error.includes("allowed length (40)")
       ) {
-        return setError(`Title field's maximum character limit is 40. `);
+        return setError("campo Título es 40 caracteres máximo");
       } else if (
-        errRes?.error.includes('description') &&
-        errRes?.error.includes('allowed length (250)')
+        errRes?.error.includes("description") &&
+        errRes?.error.includes("allowed length (250)")
       ) {
-        return setError(`Description field's maximum character limit is 250. `);
+        return setError("campo Descripción es 250 caracteres máximo");
       } else if (errRes?.error) {
         return setError(errRes.error);
       } else {
@@ -146,18 +146,18 @@ const AddUpdateForm = () => {
     <Paper>
       <form onSubmit={handleSubmit} className={classes.root}>
         <Typography
-          variant={isMobile ? 'h5' : 'h4'}
+          variant={isMobile ? "h5" : "h4"}
           color="primary"
           className={classes.formTitle}
         >
-          {editValues ? 'Update the entry' : 'Add a new entry'}
+          {editValues ? "Actualizar Tarea" : "Agregar Nueva Tarea"}
         </Typography>
         <div className={classes.input}>
           <TitleIcon color="secondary" className={classes.inputIcon} />
           <TextField
             color="secondary"
             required
-            label="Title"
+            label="Título"
             value={title}
             name="title"
             onChange={handleOnChange}
@@ -165,11 +165,11 @@ const AddUpdateForm = () => {
           />
         </div>
         <div className={classes.input}>
-          <LinkIcon color="secondary" className={classes.inputIcon} />
+          <DateIcon color="secondary" className={classes.inputIcon} />
           <TextField
             color="secondary"
             required
-            label="Link"
+            label="Enlace"
             value={link}
             name="link"
             onChange={handleOnChange}
@@ -182,7 +182,7 @@ const AddUpdateForm = () => {
             color="secondary"
             required
             multiline
-            label="Description"
+            label="Descripción"
             value={description}
             name="description"
             onChange={handleOnChange}
@@ -194,7 +194,7 @@ const AddUpdateForm = () => {
             <LocalOfferIcon color="secondary" className={classes.inputIcon} />
             <TextField
               color="secondary"
-              label="Add Tags"
+              label="Agregar Etiqueta"
               value={tagInput}
               onChange={({ target }) => setTagInput(target.value)}
             />
@@ -205,7 +205,7 @@ const AddUpdateForm = () => {
               onClick={handleTagButton}
               className={classes.tagButton}
             >
-              Add
+              Agregar
             </Button>
           </div>
           <div className={classes.tagGroup}>
@@ -224,33 +224,33 @@ const AddUpdateForm = () => {
         <div className={classes.radioInput}>
           <CheckCircleOutlineIcon color="secondary" />
           <FormLabel component="legend" className={classes.radioLabel}>
-            Link Type:
+            Tipo de Enlace:
           </FormLabel>
           <RadioGroup
             row
-            label="Type"
+            label="Tipo"
             value={type}
             name="type"
             onChange={handleOnChange}
             className={classes.radioGroup}
           >
             <FormControlLabel
-              label="Article"
+              label="Articulo"
               control={<Radio color="secondary" />}
               value="article"
-              checked={type === 'article'}
+              checked={type === "article"}
             />
             <FormControlLabel
               label="Video"
               control={<Radio color="secondary" />}
               value="video"
-              checked={type === 'video'}
+              checked={type === "video"}
             />
             <FormControlLabel
-              label="Other"
+              label="Otro"
               control={<Radio color="secondary" />}
               value="other"
-              checked={type === 'other'}
+              checked={type === "other"}
             />
           </RadioGroup>
         </div>
@@ -258,27 +258,27 @@ const AddUpdateForm = () => {
           <Button
             variant="outlined"
             color="primary"
-            size={isMobile ? 'medium' : 'large'}
+            size={isMobile ? "medium" : "large"}
             startIcon={<BackspaceIcon />}
             onClick={handleClearInput}
           >
-            Clear
+            Limpiar
           </Button>
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            size={isMobile ? 'medium' : 'large'}
+            size={isMobile ? "medium" : "large"}
             startIcon={editValues ? <EditIcon /> : <PostAddIcon />}
             disabled={isLoading}
           >
             {editValues
               ? isLoading
-                ? 'Updating Entry'
-                : 'Update Entry'
+                ? "Actualizando Tarea..."
+                : "Actualizar Tarea"
               : isLoading
-              ? 'Adding Entry'
-              : 'Add Entry'}
+              ? "Agregando Tarea..."
+              : "Agregar"}
           </Button>
         </div>
         {error && (

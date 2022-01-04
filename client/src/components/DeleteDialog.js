@@ -38,7 +38,7 @@ const DeleteDialog = ({ handleDelete, title, isMobile }) => {
           startIcon={<DeleteIcon />}
           onClick={handleClickOpen}
         >
-          Delete
+          Eliminar
         </Button>
       ) : (
         <IconButton onClick={handleClickOpen} className={classes.deleteButton}>
@@ -46,18 +46,18 @@ const DeleteDialog = ({ handleDelete, title, isMobile }) => {
         </IconButton>
       )}
       <Dialog open={open} keepMounted onClose={handleClose}>
-        <DialogTitle>Confirm Delete</DialogTitle>
+        <DialogTitle>Confirmar Eliminar</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {`Are you sure want to delete "${title}" ?`}
+            {`Estás seguro de Eliminar: "${title}" ?`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancel
+            Cancelar
           </Button>
           <Button onClick={handleActionClick} color="primary">
-            Ok
+            Eliminar
           </Button>
         </DialogActions>
       </Dialog>

@@ -69,7 +69,7 @@ const Filter = () => {
               name="articles"
             />
           }
-          label="Articles"
+          label="Artículos"
         />
         <FormControlLabel
           control={
@@ -79,7 +79,7 @@ const Filter = () => {
               name="others"
             />
           }
-          label="Others"
+          label="Otros"
         />
         <FormControlLabel
           control={
@@ -89,7 +89,7 @@ const Filter = () => {
               name="viewed"
             />
           }
-          label="Viewed"
+          label="Visto"
         />
         <FormControlLabel
           control={
@@ -99,7 +99,7 @@ const Filter = () => {
               name="starred"
             />
           }
-          label="Starred"
+          label="Destacado"
         />
         <Button
           onClick={handleUncheck}
@@ -108,7 +108,7 @@ const Filter = () => {
           size="small"
           className={classes.resetBtn}
         >
-          Reset
+          Resetear
         </Button>
       </FormGroup>
       <Button
@@ -118,7 +118,7 @@ const Filter = () => {
         startIcon={<FilterListIcon />}
         className={classes.filterButton}
       >
-        Apply Filter
+        Filtrar
       </Button>
     </form>
   );

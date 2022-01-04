@@ -12,13 +12,13 @@ const loginUser = async (req, res) => {
   if (!user) {
     return res
       .status(400)
-      .send({ error: 'No account with this email has been registered.' });
+      .send({ error: 'Ninguna cuenta con este Email ha sido registrada' });
   }
 
   const credentialsValid = await bcrypt.compare(password, user.passwordHash);
 
   if (!credentialsValid) {
-    return res.status(401).send({ error: 'Invalid credentials.' });
+    return res.status(401).send({ error: 'Credenciales Inválidas' });
   }
 
   const payloadForToken = {
@@ -38,11 +38,11 @@ const registerUser = async (req, res) => {
   if (!password || password.length < 6) {
     return res
       .status(400)
-      .send({ error: 'Password needs to be atleast 6 characters long.' });
+      .send({ error: 'Contraseña debe ser al menos 6 caracteres mínimo' });
   }
 
   if (!email || !validator.isEmail(email)) {
-    return res.status(400).send({ error: 'Valid email address is required.' });
+    return res.status(400).send({ error: 'Se requiere dirección de Email válida' });
   }
 
   const existingUser = await User.findOne({ email });
@@ -50,7 +50,7 @@ const registerUser = async (req, res) => {
   if (existingUser) {
     return res
       .status(400)
-      .send({ error: 'An account with this email already exists.' });
+      .send({ error: 'Ya existe una cuenta con este Email' });
   }
 
   const saltRounds = 10;

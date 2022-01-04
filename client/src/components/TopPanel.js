@@ -32,7 +32,7 @@ const TopPanel = () => {
           startIcon={<PostAddIcon />}
           onClick={() => dispatch(resetEditValues())}
         >
-          Add Entry
+          Agregar
         </Button>
       ) : (
         <HideOnScroll>

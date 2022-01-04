@@ -49,7 +49,7 @@ const Search = () => {
         onClick={handleClear}
         startIcon={<HighlightOffIcon />}
       >
-        Clear
+        Limpiar
       </Button>
     );
   };
@@ -59,9 +59,9 @@ const Search = () => {
       <TextField
         className={classes.field}
         fullWidth
-        label="Search"
+        label="Buscar"
         variant="outlined"
-        placeholder="By title, tag or description"
+        placeholder="título, etiqueta o descripción"
         inputRef={query}
         onChange={handleSearchChange}
         color="secondary"

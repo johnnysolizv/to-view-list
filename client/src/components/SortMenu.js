@@ -18,7 +18,7 @@ const SortMenu = () => {
     <div className={classes.root}>
       <Typography variant="subtitle1" className={classes.label}>
         <SortIcon className={classes.sortIcon} />
-        Sort by:
+        Ordenar por:
       </Typography>
       <form>
         <FormControl>
@@ -28,10 +28,10 @@ const SortMenu = () => {
             onChange={handleSelectChange}
             className={classes.select}
           >
-            <MenuItem value="newest">Newest first</MenuItem>
-            <MenuItem value="oldest">Oldest first</MenuItem>
-            <MenuItem value="a-z">Title: A - Z</MenuItem>
-            <MenuItem value="z-a">Title: Z - A</MenuItem>
+            <MenuItem value="newest">Más Reciente</MenuItem>
+            <MenuItem value="oldest">Más Antigua</MenuItem>
+            <MenuItem value="a-z">Título: A - Z</MenuItem>
+            <MenuItem value="z-a">Título: Z - A</MenuItem>
           </Select>
         </FormControl>
       </form>

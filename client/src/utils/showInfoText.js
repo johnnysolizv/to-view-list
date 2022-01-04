@@ -1,11 +1,11 @@
 const showInfoText = (filter, search, tag, currentFilter) => {
   return filter
-    ? `Filtered to show - "${currentFilter(filter).join(', ')}"`
+    ? `Filtrado para mostrar - "${currentFilter(filter).join(', ')}"`
     : search
-    ? `Showing results for search - "${search}"`
+    ? `Mostrando los resultados de la búsqueda - "${search}"`
     : tag
-    ? `Filtered by tag - "${tag.toLowerCase()}"`
-    : 'Showing - All';
+    ? `Filtrado por etiqueta - "${tag.toLowerCase()}"`
+    : 'Mostrando todos los resultados';
 };
 
 export default showInfoText;

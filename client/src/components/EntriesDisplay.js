@@ -67,7 +67,7 @@ const EntriesDisplay = () => {
         size="small"
         color="primary"
       >
-        Go Back
+        Atrás
       </Button>
     );
   };
@@ -108,7 +108,7 @@ const EntriesDisplay = () => {
           className={classes.middleText}
           color="secondary"
         >
-          {search || filter ? 'No matches found.' : 'No entries added yet.'}
+          {search || filter ? 'No se encontraron coincidencias' : 'Ninguna Tarea Agregada'}
         </Typography>
       )}
     </div>

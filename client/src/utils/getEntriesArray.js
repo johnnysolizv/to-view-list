@@ -6,7 +6,7 @@ const getEntriesArray = (entries, search, tag) => {
           e.description.toLowerCase().includes(search.toLowerCase()) ||
           e.tags.includes(search.toLowerCase())
       )
-    : tag
+     : tag
     ? entries.filter((e) => e.tags.includes(tag.toLowerCase()))
     : entries;
 };

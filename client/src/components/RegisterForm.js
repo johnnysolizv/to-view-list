@@ -52,7 +52,7 @@ const RegisterForm = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      return setError(`Confirm password failed! Both passwords need to match.`);
+      return setError(`Las Contraseñas deben ser iguales`);
     }
     try {
       entryDispatch(toggleIsLoading());
@@ -72,8 +72,8 @@ const RegisterForm = () => {
       history.push('/');
       notify(
         entryDispatch,
-        `Welcome, ${user.displayName}! Your account has been registered.`,
-        'success'
+        `Bienvenido, ${user.displayName}! Tu cuenta ha sido creada con éxito.`,
+        'éxito'
       );
     } catch (err) {
       entryDispatch(toggleIsLoading());
@@ -90,14 +90,14 @@ const RegisterForm = () => {
     <Paper className={classes.root}>
       <form onSubmit={handleRegister} className={classes.form}>
         <Typography variant="h4" color="primary" className={classes.formTitle}>
-          Create an account
+          Crear cuenta
         </Typography>
         <div className={classes.input}>
           <PersonIcon color="secondary" className={classes.inputIcon} />
           <TextField
             color="secondary"
             required
-            label="Display Name"
+            label="Mostrar Nombre"
             value={displayName}
             name="displayName"
             onChange={handleOnChange}
@@ -123,7 +123,7 @@ const RegisterForm = () => {
             color="secondary"
             required
             type={showPass ? 'text' : 'password'}
-            label="Password"
+            label="Contraseña"
             value={password}
             name="password"
             onChange={handleOnChange}
@@ -148,7 +148,7 @@ const RegisterForm = () => {
             color="secondary"
             required
             type={showConfirmPass ? 'text' : 'password'}
-            label="Confirm Password"
+            label="Confirmar Contraseña"
             value={confirmPassword}
             name="confirmPassword"
             onChange={({ target }) => setConfirmPassword(target.value)}
@@ -179,12 +179,12 @@ const RegisterForm = () => {
           startIcon={<PersonAddIcon />}
           disabled={isLoading}
         >
-          {isLoading ? 'Registering' : 'Register'}
+          {isLoading ? 'Registrando' : 'Crear'}
         </Button>
         <Typography variant="body1" className={classes.bottomText}>
-          Already have an account?{' '}
+          Ya tienes una cuenta?{' '}
           <Link component={RouterLink} to="/login">
-            Login.
+            Iniciar Sesión
           </Link>
         </Typography>
         {error && (

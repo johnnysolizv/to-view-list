@@ -62,8 +62,8 @@ const LoginForm = () => {
       history.push('/');
       notify(
         entryDispatch,
-        `Welcome, ${user.displayName}! You're logged in.`,
-        'success'
+        `Bienvenido, ${user.displayName}! Estás Logeado!`,
+        'éxito',
       );
     } catch (err) {
       entryDispatch(toggleIsLoading());
@@ -80,7 +80,7 @@ const LoginForm = () => {
     <Paper className={classes.root}>
       <form onSubmit={handleLogin} className={classes.form}>
         <Typography variant="h4" color="primary" className={classes.formTitle}>
-          Login to your account
+          Acceder a tu cuenta
         </Typography>
         <div className={classes.input}>
           <AlternateEmailIcon color="secondary" className={classes.inputIcon} />
@@ -101,7 +101,7 @@ const LoginForm = () => {
             color="secondary"
             required
             type={showPass ? 'text' : 'password'}
-            label="Password"
+            label="Contraseña"
             value={password}
             name="password"
             onChange={handleOnChange}
@@ -127,12 +127,12 @@ const LoginForm = () => {
           startIcon={<ExitToAppIcon />}
           disabled={isLoading}
         >
-          {isLoading ? 'Logging in' : 'Login'}
+          {isLoading ? 'Iniciando' : 'Entrar'}
         </Button>
         <Typography variant="body1" className={classes.bottomText}>
-          Don't have an account?{' '}
+          No tienes una cuenta?{' '}
           <Link component={RouterLink} to="/register">
-            Register.
+            Registrate
           </Link>
         </Typography>
         {error && (
